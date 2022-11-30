@@ -19,10 +19,11 @@ instance Monoid CliArguments where
 parseArgs :: [String] -> Either String CliArguments
 parseArgs ("-f":filename:rest) = (inputFileNameArguments filename <>) <$> parseArgs rest
 parseArgs ("-d":dayStr:rest) = do 
-  day <- maybe (Left $ "Expected number, got" <> dayStr) Right $ parseNumber dayStr
-  (dayArguments day <>) <$> parseArgs rest
+  parsedArguments <- dayArguments <$> parseNumber dayStr
+  nextArguments <- parseArgs rest
+  return $ parsedArguments <> nextArguments
 parseArgs ([]) = Right mempty
 parseArgs _ = Left $ "Failed to parse input arguments"
 
-parseNumber :: String -> Maybe Int
-parseNumber = readMaybe
+parseNumber :: String -> Either String Int
+parseNumber input = maybe (Left $ "Expected number, got" <> input) Right $ readMaybe input
