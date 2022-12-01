@@ -1,8 +1,7 @@
 module TestDay1 where
 
-import Test.Hspec
-
 import qualified AdventOfCode2022.Day1 as Day1
+import Test.Hspec
 
 test :: String -> SpecWith ()
 test exampleInput = do

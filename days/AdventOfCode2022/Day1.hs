@@ -1,7 +1,7 @@
 module AdventOfCode2022.Day1 where
 
-import Data.List.Split
 import Data.List
+import Data.List.Split
 
 solve1 :: String -> Int
 solve1 xs = maximum $ map sum $ parseLines $ lines xs

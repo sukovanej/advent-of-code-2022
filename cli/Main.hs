@@ -1,12 +1,16 @@
 module Main (main) where
 
 import qualified AdventOfCode2022.Day1 as Day1
-import System.Environment
 import qualified CliArguments as Cli
 import Data.Functor
+import System.Environment
 import System.Exit
 
-data Inputs = Inputs { inputFileName :: String, solveFn :: String -> Int }
+-- read more on strict
+data Inputs = Inputs
+  { inputFileName :: !String,
+    solveFn :: !(String -> Int)
+  }
 
 inputFolder :: String
 inputFolder = "inputs"
@@ -16,15 +20,15 @@ main = do
   maybeCliArguments <- (getArgs <&> Cli.parseArgs) <&> (>>= parseCli)
   cliArguments <- either failWithMessage return maybeCliArguments
   input <- readInputFile $ inputFileName cliArguments
-  print $ (solveFn cliArguments) input
+  print $ solveFn cliArguments input
 
 parseCli :: Cli.CliArguments -> Either String Inputs
 parseCli args = do
   dayArg <- maybe (Left "Day not specified") Right (Cli.day args)
   solutionArg <- maybe (Left "Solution not specified") Right (Cli.solution args)
   inputFileNameArg <- maybe (Right $ "input" <> show dayArg <> ".txt") Right (Cli.inputFileName args)
-  solveFn <- maybe (Left "Solve function not set") Right (getDaySolveFunction dayArg solutionArg)
-  return $ Inputs inputFileNameArg solveFn
+  solve <- maybe (Left "Solve function not set") Right (getDaySolveFunction dayArg solutionArg)
+  return $ Inputs inputFileNameArg solve
 
 getDaySolveFunction :: Int -> Int -> Maybe (String -> Int)
 getDaySolveFunction 1 1 = Just Day1.solve1

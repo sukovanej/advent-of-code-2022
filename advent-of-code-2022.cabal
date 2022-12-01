@@ -3,14 +3,14 @@ name: advent-of-code
 version: 0.1.0.0
 -- synopsis:
 -- description:
-license:            MIT
-license-file:       LICENSE
-author:             Milan Suk
-maintainer:         Milansuk@email.cz
+license: MIT
+license-file: LICENSE
+author: Milan Suk
+maintainer: Milansuk@email.cz
 -- copyright:
-category:           Development
-build-type:         Simple
-extra-doc-files:    CHANGELOG.md
+category: Development
+build-type: Simple
+extra-doc-files: CHANGELOG.md
 -- extra-source-files:
 
 common warnings
@@ -18,25 +18,25 @@ common warnings
 
 library
     import: warnings
-    build-depends: base ^>=4.17.0.0, split ^>=0.2.3.5
+    build-depends: base ^>=4.14, split ^>=0.2.3.5
     hs-source-dirs: days
-    default-language: GHC2021
+    default-language: Haskell2010
     exposed-modules: AdventOfCode2022.Day1
 
 executable cli
     import: warnings
     main-is: Main.hs
-    build-depends: base ^>=4.17.0.0, advent-of-code
+    build-depends: base ^>=4.14, advent-of-code
     hs-source-dirs: cli
-    default-language: GHC2021
+    default-language: Haskell2010
     other-modules: CliArguments
 
 executable tests
     import: warnings
     main-is: Main.hs
     other-modules: TestDay1
-    build-depends: base ^>=4.17.0.0,
+    build-depends: base ^>=4.14,
                    hspec ^>=2.10.6,
                    advent-of-code
     hs-source-dirs: tests
-    default-language: GHC2021
+    default-language: Haskell2010
