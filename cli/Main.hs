@@ -15,23 +15,24 @@ main = do
   either failWithMessage solveWithArguments cliArguments
 
 solveWithArguments :: CliArguments -> IO ()
-solveWithArguments cliArguments = 
-  maybe (failWithMessage "No day specified") (solveDay $ inputFileName cliArguments) (day cliArguments)
+solveWithArguments cliArguments =
+  maybe (failWithMessage "No day specified") (solveDay cliArguments $ inputFileName cliArguments) (day cliArguments)
 
-solveDay :: Maybe String -> Int -> IO ()
-solveDay maybeInputFileName day = do
+solveDay :: CliArguments -> Maybe String -> Int -> IO ()
+solveDay cliArguments maybeInputFileName day = do
   input <- readInputFile $ maybe defaultFileName id maybeInputFileName
-  solveDayWithInput day input
+  maybe (failWithMessage "Solution not specified") (\s -> solveDayWithInput day s input) (solution cliArguments)
     where defaultFileName = "input" <> show day <> ".txt"
 
-solveDayWithInput :: Int -> String -> IO ()
-solveDayWithInput day input = do
-  let maybeSolve = getDaySolveFunction day
+solveDayWithInput :: Int -> Int -> String -> IO ()
+solveDayWithInput day solution input = do
+  let maybeSolve = getDaySolveFunction day solution
   maybe (failWithMessage $ "No solve function for day " <> show day) (\solve -> print $ solve input) maybeSolve
 
-getDaySolveFunction :: Int -> Maybe (String -> Int)
-getDaySolveFunction 1 = Just Day1.solve
-getDaySolveFunction _ = Nothing
+getDaySolveFunction :: Int -> Int -> Maybe (String -> Int)
+getDaySolveFunction 1 1 = Just Day1.solve1
+getDaySolveFunction 1 2 = Just Day1.solve2
+getDaySolveFunction _ _ = Nothing
 
 readInputFile :: String -> IO String
 readInputFile filename = readFile $ inputFolder <> "/" <> filename
