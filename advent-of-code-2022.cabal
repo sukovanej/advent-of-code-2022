@@ -18,7 +18,7 @@ common warnings
 
 library
     import: warnings
-    build-depends: base ^>=4.17.0.0
+    build-depends: base ^>=4.17.0.0, split ^>=0.2.3.5
     hs-source-dirs: days
     default-language: GHC2021
     exposed-modules: AdventOfCode2022.Day1
