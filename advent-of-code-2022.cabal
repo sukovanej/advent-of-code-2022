@@ -21,7 +21,8 @@ library
     build-depends: base ^>=4.14, split ^>=0.2.3.5
     hs-source-dirs: days
     default-language: Haskell2010
-    exposed-modules: AdventOfCode2022.Day1
+    exposed-modules: AdventOfCode2022.Day1, 
+                     AdventOfCode2022.Day2
 
 executable cli
     import: warnings
@@ -40,3 +41,4 @@ executable tests
                    advent-of-code
     hs-source-dirs: tests
     default-language: Haskell2010
+    other-modules: TestDay1, TestDay2
