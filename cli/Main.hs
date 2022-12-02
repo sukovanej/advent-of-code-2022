@@ -2,6 +2,7 @@ module Main (main) where
 
 import qualified AdventOfCode2022.Day1 as Day1
 import qualified AdventOfCode2022.Day2 as Day2
+import qualified AdventOfCode2022.Day3 as Day3
 import qualified CliArguments as Cli
 import Data.Functor
 import System.Environment
@@ -36,6 +37,8 @@ getDaySolveFunction 1 1 = Just Day1.solve1
 getDaySolveFunction 1 2 = Just Day1.solve2
 getDaySolveFunction 2 1 = Just Day2.solve1
 getDaySolveFunction 2 2 = Just Day2.solve2
+getDaySolveFunction 3 1 = Just Day3.solve1
+getDaySolveFunction 3 2 = Just Day3.solve2
 getDaySolveFunction _ _ = Nothing
 
 readInputFile :: String -> IO String
