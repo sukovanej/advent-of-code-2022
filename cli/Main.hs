@@ -1,9 +1,9 @@
 module Main (main) where
 
+import qualified AdventOfCode2022.CliArguments as Cli
 import qualified AdventOfCode2022.Day1 as Day1
 import qualified AdventOfCode2022.Day2 as Day2
 import qualified AdventOfCode2022.Day3 as Day3
-import qualified CliArguments as Cli
 import Data.Functor
 import System.Environment
 import System.Exit

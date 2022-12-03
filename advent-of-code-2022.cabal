@@ -19,9 +19,10 @@ common warnings
 library
     import: warnings
     build-depends: base ^>=4.14, split ^>=0.2.3.5, containers
-    hs-source-dirs: days
+    hs-source-dirs: lib
     default-language: Haskell2010
-    exposed-modules: AdventOfCode2022.Day1, 
+    exposed-modules: AdventOfCode2022.CliArguments,
+                     AdventOfCode2022.Day1,
                      AdventOfCode2022.Day2,
                      AdventOfCode2022.Day3,
 
@@ -31,7 +32,6 @@ executable cli
     build-depends: base ^>=4.14, advent-of-code
     hs-source-dirs: cli
     default-language: Haskell2010
-    other-modules: CliArguments
 
 executable tests
     import: warnings
@@ -42,6 +42,8 @@ executable tests
                    advent-of-code
     hs-source-dirs: tests
     default-language: Haskell2010
-    other-modules: TestDay1,
+    other-modules: TestCliArguments,
+                   TestDay1,
                    TestDay2,
                    TestDay3,
+                   
