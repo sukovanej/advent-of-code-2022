@@ -3,7 +3,11 @@ module CliArguments (parseArgs, CliArguments (..)) where
 import Control.Applicative
 import Text.Read
 
-data CliArguments = CliArguments {day :: Maybe Int, inputFileName :: Maybe String, solution :: Maybe Int}
+data CliArguments = CliArguments
+  { day :: !(Maybe Int),
+    inputFileName :: !(Maybe String),
+    solution :: !(Maybe Int)
+  }
 
 dayArguments :: Int -> CliArguments
 dayArguments x = CliArguments (Just x) Nothing Nothing
