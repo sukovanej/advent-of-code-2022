@@ -18,7 +18,7 @@ common warnings
 
 library
     import: warnings
-    build-depends: base ^>=4.14, split ^>=0.2.3.5, containers
+    build-depends: base ^>=4.14, split ^>=0.2.3.5, containers, lens ^>=5.2
     hs-source-dirs: lib
     default-language: Haskell2010
     exposed-modules: AdventOfCode2022.CliArguments,
@@ -29,7 +29,7 @@ library
 executable cli
     import: warnings
     main-is: Main.hs
-    build-depends: base ^>=4.14, advent-of-code
+    build-depends: base ^>=4.14, advent-of-code, lens ^>=5.2
     hs-source-dirs: cli
     default-language: Haskell2010
 

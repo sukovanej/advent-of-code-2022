@@ -4,7 +4,7 @@ import qualified AdventOfCode2022.CliArguments as Cli
 import qualified AdventOfCode2022.Day1 as Day1
 import qualified AdventOfCode2022.Day2 as Day2
 import qualified AdventOfCode2022.Day3 as Day3
-import Data.Functor
+import Control.Lens
 import System.Environment
 import System.Exit
 
@@ -22,13 +22,13 @@ main = do
   maybeCliArguments <- (getArgs <&> Cli.parseArgs) <&> (>>= parseCli)
   cliArguments <- either failWithMessage return maybeCliArguments
   input <- readInputFile $ inputFileName cliArguments
-  print $ solveFn cliArguments input
+  putStrLn $ solveFn cliArguments input
 
 parseCli :: Cli.CliArguments -> Either String Inputs
 parseCli args = do
-  dayArg <- maybe (Left "Day not specified") Right (Cli.day args)
-  solutionArg <- maybe (Left "Solution not specified") Right (Cli.solution args)
-  inputFileNameArg <- maybe (Right $ "input" <> show dayArg <> ".txt") Right (Cli.inputFileName args)
+  dayArg <- maybe (Left "Day not specified") Right (args ^. Cli.day)
+  solutionArg <- maybe (Left "Solution not specified") Right (args ^. Cli.solution)
+  inputFileNameArg <- maybe (Right $ "input" <> show dayArg <> ".txt") Right (args ^. Cli.inputFileName)
   solve <- maybe (Left "Solve function not set") Right (getDaySolveFunction dayArg solutionArg)
   return $ Inputs inputFileNameArg solve
 

@@ -1,44 +1,42 @@
-module AdventOfCode2022.CliArguments (parseArgs, CliArguments (..)) where
+{-# LANGUAGE TemplateHaskell #-}
+
+module AdventOfCode2022.CliArguments (parseArgs, CliArguments(CliArguments), day, inputFileName, solution) where
 
 import Control.Applicative
+import Control.Lens
 import Data.Foldable (Foldable (foldl'))
 import Data.List.Split
 import Text.Read
 
 data CliArguments = CliArguments
-  { day :: !(Maybe Int),
-    inputFileName :: !(Maybe String),
-    solution :: !(Maybe Int)
+  { _day :: !(Maybe Int),
+    _inputFileName :: !(Maybe String),
+    _solution :: !(Maybe Int)
   }
   deriving (Show, Eq)
 
--- TODO: use lenses instead
-dayArguments :: Int -> CliArguments
-dayArguments x = CliArguments (Just x) Nothing Nothing
-
-inputFileNameArguments :: String -> CliArguments
-inputFileNameArguments x = CliArguments Nothing (Just x) Nothing
-
-solutionArguments :: Int -> CliArguments
-solutionArguments x = CliArguments Nothing Nothing (Just x)
+$(makeLenses ''CliArguments)
 
 instance Semigroup CliArguments where
   a <> b =
     CliArguments
-      (day a <|> day b)
-      (inputFileName a <|> inputFileName b)
-      (solution a <|> solution b)
+      (a ^. day <|> b ^. day)
+      (a ^. inputFileName <|> b ^. inputFileName)
+      (a ^. solution <|> b ^. solution)
 
 instance Monoid CliArguments where
-  mempty = CliArguments {day = Nothing, inputFileName = Nothing, solution = Nothing}
+  mempty = CliArguments {_day = Nothing, _inputFileName = Nothing, _solution = Nothing}
 
 parseArgs :: [String] -> Either String CliArguments
 parseArgs xs = fmap (foldl' (<>) mempty) (traverse parseArgGroup $ chunksOf 2 xs)
 
+emptyWith :: ASetter' CliArguments (Maybe a) -> a -> CliArguments
+emptyWith l value = l ?~ value $ mempty
+
 parseArgGroup :: [String] -> Either String CliArguments
-parseArgGroup ["-f", filename] = Right $ inputFileNameArguments filename
-parseArgGroup ["-d", dayStr] = dayArguments <$> parseNumber dayStr
-parseArgGroup ["-s", solutionStr] = solutionArguments <$> parseNumber solutionStr
+parseArgGroup ["-f", filename] = emptyWith inputFileName <$> Right filename
+parseArgGroup ["-d", dayStr] = emptyWith day <$> parseNumber dayStr
+parseArgGroup ["-s", solutionStr] = emptyWith solution <$> parseNumber solutionStr
 parseArgGroup xs = Left $ "Unexpected arguments " <> unwords xs
 
 parseNumber :: String -> Either String Int
