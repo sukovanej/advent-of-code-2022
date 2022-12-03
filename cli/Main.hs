@@ -11,7 +11,7 @@ import System.Exit
 -- read more on strict
 data Inputs = Inputs
   { inputFileName :: !String,
-    solveFn :: !(String -> Int)
+    solveFn :: !(String -> String)
   }
 
 inputFolder :: String
@@ -32,13 +32,13 @@ parseCli args = do
   solve <- maybe (Left "Solve function not set") Right (getDaySolveFunction dayArg solutionArg)
   return $ Inputs inputFileNameArg solve
 
-getDaySolveFunction :: Int -> Int -> Maybe (String -> Int)
-getDaySolveFunction 1 1 = Just Day1.solve1
-getDaySolveFunction 1 2 = Just Day1.solve2
-getDaySolveFunction 2 1 = Just Day2.solve1
-getDaySolveFunction 2 2 = Just Day2.solve2
-getDaySolveFunction 3 1 = Just Day3.solve1
-getDaySolveFunction 3 2 = Just Day3.solve2
+getDaySolveFunction :: Int -> Int -> Maybe (String -> String)
+getDaySolveFunction 1 1 = Just $ show . Day1.solve1
+getDaySolveFunction 1 2 = Just $ show . Day1.solve2
+getDaySolveFunction 2 1 = Just $ show . Day2.solve1
+getDaySolveFunction 2 2 = Just $ show . Day2.solve2
+getDaySolveFunction 3 1 = Just $ show . Day3.solve1
+getDaySolveFunction 3 2 = Just $ show . Day3.solve2
 getDaySolveFunction _ _ = Nothing
 
 readInputFile :: String -> IO String
