@@ -33,3 +33,4 @@ Current 3rd party dependencies are:
 - [split](https://hackage.haskell.org/package/split) - for making (big surprise) splitting lists
 - [containers](https://hackage.haskell.org/package/containers) - containes stuff like sets, trees, maps
 - [lens](https://hackage.haskell.org/package/lens) - for manipulating data structures
+- [attoparsec](https://hackage.haskell.org/package/attoparsec) - for text parsing
