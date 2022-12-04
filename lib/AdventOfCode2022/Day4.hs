@@ -18,6 +18,6 @@ overlap ((a, b), (x, y)) = not (b < x || a > y)
 parseInput :: String -> [((Int, Int), (Int, Int))]
 parseInput = unsafeParse parseLines
   where
-    parseLines = lineExpr `sepBy` char '\n' <* skipMany (char '\n')
+    parseLines = lineExpr `sepBy` endOfLine <* skipMany endOfLine
     lineExpr = (,) <$> numberTupleExpr <* char ',' <*> numberTupleExpr
     numberTupleExpr = (,) <$> decimal <* char '-' <*> decimal
