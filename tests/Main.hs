@@ -6,6 +6,7 @@ import qualified TestDay1 as Day1
 import qualified TestDay2 as Day2
 import qualified TestDay3 as Day3
 import qualified TestDay4 as Day4
+import qualified TestDay5 as Day5
 
 main :: IO ()
 main = do
@@ -16,3 +17,4 @@ main = do
     Day2.test
     Day3.test
     Day4.test
+    Day5.test
