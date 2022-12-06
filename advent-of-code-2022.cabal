@@ -45,7 +45,6 @@ executable cli
 executable tests
     import: warnings
     main-is: Main.hs
-    other-modules: TestDay1
     build-depends: base ^>=4.14,
                    hspec ^>=2.10.6,
                    advent-of-code
