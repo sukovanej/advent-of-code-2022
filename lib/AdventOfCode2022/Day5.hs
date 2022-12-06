@@ -3,6 +3,7 @@
 module AdventOfCode2022.Day5 where
 
 import AdventOfCode2022.Parsing
+import Control.Arrow ((&&&))
 import Data.Attoparsec.Text hiding (takeWhile)
 import Data.List (transpose)
 import Data.Maybe (catMaybes)
@@ -33,11 +34,12 @@ replaceAt index value = zipWith (\i v -> if i == index then value else v) [0 ..]
 parseInput :: String -> (StackList, [Move])
 parseInput input = (inputStackList, moves)
   where
-    inputLines = lines input
-    moves = map parseMove $ tail $ dropWhile (/= "") inputLines
+    (stacksInput, movesInput) = (init . takeWhile (/= "")) &&& (tail . dropWhile (/= "")) $ lines input
+
+    moves = map parseMove movesInput
     parseMove line = unsafeParse moveExpr line
     moveExpr = (,,) <$> (string "move " *> decimal) <*> (string " from " *> decimal) <*> (string " to " *> decimal)
 
     charExpr = choice [Just <$> (char '[' *> anyChar <* char ']'), Nothing <$ string "   "]
     stackLineExpr = sepBy charExpr (char ' ')
-    inputStackList = map catMaybes $ transpose $ map (unsafeParse stackLineExpr) $ (init . takeWhile (/= "")) inputLines
+    inputStackList = map catMaybes $ transpose $ map (unsafeParse stackLineExpr) stacksInput
