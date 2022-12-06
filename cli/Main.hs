@@ -6,6 +6,7 @@ import qualified AdventOfCode2022.Day2 as Day2
 import qualified AdventOfCode2022.Day3 as Day3
 import qualified AdventOfCode2022.Day4 as Day4
 import qualified AdventOfCode2022.Day5 as Day5
+import qualified AdventOfCode2022.Day6 as Day6
 import Control.Lens
 import System.Environment
 import System.Exit
@@ -45,6 +46,8 @@ getDaySolveFunction 4 1 = Just $ show . Day4.solve1
 getDaySolveFunction 4 2 = Just $ show . Day4.solve2
 getDaySolveFunction 5 1 = Just Day5.solve1
 getDaySolveFunction 5 2 = Just Day5.solve2
+getDaySolveFunction 6 1 = Just $ show . Day6.solve1
+getDaySolveFunction 6 2 = Just $ show . Day6.solve2
 getDaySolveFunction _ _ = Nothing
 
 readInputFile :: String -> IO String
