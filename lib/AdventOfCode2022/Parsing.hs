@@ -10,6 +10,6 @@ unsafeParse p s = handle $ parse p (T.pack s)
   where
     handle r = case r of
       Done (T.unpack -> "") a -> a
-      Done a b -> error $ "done with remaining" <> show a <> " " <> show b
+      Done a _ -> error $ "done with remaining " <> show a
       Fail a b c -> error $ "failed with" <> show a <> " " <> show b <> " " <> show c
       Partial f -> handle $ f (T.pack "")
