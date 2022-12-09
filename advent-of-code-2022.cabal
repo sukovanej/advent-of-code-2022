@@ -38,6 +38,7 @@ library
                      AdventOfCode2022.Day7,
                      AdventOfCode2022.Day8,
                      AdventOfCode2022.Day9,
+                     AdventOfCode2022.Day10,
 
 executable cli
     import: warnings
@@ -64,3 +65,4 @@ executable tests
                    TestDay7,
                    TestDay8,
                    TestDay9,
+                   TestDay10,
