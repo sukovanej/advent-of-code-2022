@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module AdventOfCode2022.Day5 where
+module AdventOfCode2022.Day05 where
 
 import AdventOfCode2022.Parsing
 import Control.Arrow ((&&&))

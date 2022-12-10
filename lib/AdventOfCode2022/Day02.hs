@@ -1,4 +1,4 @@
-module AdventOfCode2022.Day2 where
+module AdventOfCode2022.Day02 where
 
 data HandShape = Rock | Paper | Scissors deriving (Eq)
 

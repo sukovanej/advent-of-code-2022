@@ -1,4 +1,4 @@
-module AdventOfCode2022.Day3 where
+module AdventOfCode2022.Day03 where
 
 import Data.Char (ord)
 import Data.List

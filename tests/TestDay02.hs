@@ -1,6 +1,6 @@
-module TestDay2 where
+module TestDay02 where
 
-import qualified AdventOfCode2022.Day2 as Day2
+import qualified AdventOfCode2022.Day02 as D
 import Test.Hspec
 
 testInput :: String
@@ -10,6 +10,6 @@ test :: SpecWith ()
 test = do
   describe "Day2" $ do
     it "solves example (1)" $ do
-      Day2.solve1 testInput `shouldBe` 15
+      D.solve1 testInput `shouldBe` 15
     it "solves example (2)" $ do
-      Day2.solve2 testInput `shouldBe` 12
+      D.solve2 testInput `shouldBe` 12

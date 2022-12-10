@@ -1,6 +1,6 @@
 {-# LANGUAGE TupleSections #-}
 
-module AdventOfCode2022.Day8 where
+module AdventOfCode2022.Day08 where
 
 import Data.List (nub, transpose)
 

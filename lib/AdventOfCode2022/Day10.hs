@@ -24,8 +24,8 @@ runInstrs :: (Cycle -> Value -> a -> a) -> [Instr] -> S.State (Cycle, Value, a) 
 runInstrs f = foldr ((>>) . S.modify . runInstr f) (return ())
 
 runInstr :: (Cycle -> Value -> a -> a) -> Instr -> (Cycle, Value, a) -> (Cycle, Value, a)
-runInstr f Noop (c, value, acc) = (c + 1, value, f c value acc)
-runInstr f (Addx x) (c, value, acc) = (c + 2, value + x, f (c + 1) value . f c value $ acc)
+runInstr f Noop (c, value, a) = (c + 1, value, f c value a)
+runInstr f (Addx x) (c, value, a) = (c + 2, value + x, f (c + 1) value . f c value $ a)
 
 updateAcc :: Cycle -> Value -> Acc -> Acc
 updateAcc c value acc = if c `elem` [20, 60, 100, 140, 180, 220] then acc + c * value else acc

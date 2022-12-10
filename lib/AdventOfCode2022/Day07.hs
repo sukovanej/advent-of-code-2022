@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module AdventOfCode2022.Day7 where
+module AdventOfCode2022.Day07 where
 
 import AdventOfCode2022.Parsing
 import Data.Attoparsec.Text

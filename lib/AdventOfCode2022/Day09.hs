@@ -1,4 +1,4 @@
-module AdventOfCode2022.Day9 where
+module AdventOfCode2022.Day09 where
 
 import qualified Control.Monad.State.Lazy as S
 import qualified Data.Set as Set

@@ -1,4 +1,4 @@
-module AdventOfCode2022.Day1 where
+module AdventOfCode2022.Day01 where
 
 import Data.List
 import Data.List.Split

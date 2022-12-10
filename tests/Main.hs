@@ -2,15 +2,15 @@ module Main where
 
 import Test.Hspec
 import qualified TestCliArguments
-import qualified TestDay1 as Day1
-import qualified TestDay2 as Day2
-import qualified TestDay3 as Day3
-import qualified TestDay4 as Day4
-import qualified TestDay5 as Day5
-import qualified TestDay6 as Day6
-import qualified TestDay7 as Day7
-import qualified TestDay8 as Day8
-import qualified TestDay9 as Day9
+import qualified TestDay01 as Day01
+import qualified TestDay02 as Day02
+import qualified TestDay03 as Day03
+import qualified TestDay04 as Day04
+import qualified TestDay05 as Day05
+import qualified TestDay06 as Day06
+import qualified TestDay07 as Day07
+import qualified TestDay08 as Day08
+import qualified TestDay09 as Day09
 import qualified TestDay10 as Day10
 
 main :: IO ()
@@ -20,13 +20,13 @@ main = do
 
   hspec $ do
     TestCliArguments.test
-    Day1.test example1
-    Day2.test
-    Day3.test
-    Day4.test
-    Day5.test
-    Day6.test
-    Day7.test
-    Day8.test
-    Day9.test
+    Day01.test example1
+    Day02.test
+    Day03.test
+    Day04.test
+    Day05.test
+    Day06.test
+    Day07.test
+    Day08.test
+    Day09.test
     Day10.test example10

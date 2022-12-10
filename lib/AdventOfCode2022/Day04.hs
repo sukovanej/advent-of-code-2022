@@ -1,4 +1,4 @@
-module AdventOfCode2022.Day4 where
+module AdventOfCode2022.Day04 where
 
 import AdventOfCode2022.Parsing
 import Data.Attoparsec.Text

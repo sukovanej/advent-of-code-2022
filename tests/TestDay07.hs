@@ -1,6 +1,6 @@
-module TestDay7 where
+module TestDay07 where
 
-import AdventOfCode2022.Day7
+import AdventOfCode2022.Day07
 import Test.Hspec
 
 testInput :: String
