@@ -16,6 +16,8 @@ import qualified TestDay10 as Day10
 main :: IO ()
 main = do
   example1 <- readFile "inputs/example1.txt"
+  example10 <- readFile "inputs/example10.txt"
+
   hspec $ do
     TestCliArguments.test
     Day1.test example1
@@ -27,4 +29,4 @@ main = do
     Day7.test
     Day8.test
     Day9.test
-    Day10.test
+    Day10.test example10
